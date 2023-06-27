@@ -17,15 +17,23 @@
   <div class="text-center">
     <h1 class="content-center">Welcome to the largest Word-Game</h1>
     <h2>New Game</h2>
-
+    <br>
+    <br>
     <div class="row text-center">
     <% @letters.split(' ').each do |letter| %>
-      <div class="card border border-primary fs-2" style="width: 3rem; height:3rem"> <%= letter %> </div>
+      <div class="card-body fs-2" style="width: 3rem; height:3rem">
+        <ul class="list-group">
+          <li class="list-group-item"> <%= letter %> </li>
+        </ul>
+      </div>
     <% end %>
     </div>
     <form action="/score" method="post" data-turbo="false">
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <br>
+      <br>
       <label for="word">What is the longest word you can find?...</label>
+      <br>
       <br>
       <input
         id="word"
