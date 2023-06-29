@@ -1,7 +1,14 @@
 <h1>Result</h1>
 
-<p> <%= @score %> </p>
+<% if @included %>
+  <% if @english_word %>
+  <p>Congratulations! <strong> <%= @word %> </strong>  is a valid English word!! </p>
+  <% else %>
+  <p>Ups Sorry :/ <strong> <%=@word%> </strong> does not to be a valid English word... Try again :)</p>
+  <% end %>
+<% else %>
+  <p>Sorry but <strong> <%=@word%> </strong> can not be built out of  <%= @letters.join(', ') %> </p>
+<% end %>
 
-<p> <%= @message %> </p>
 
 <%= link_to "Play again", new_path %>

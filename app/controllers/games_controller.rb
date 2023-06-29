@@ -1,32 +1,25 @@
 require 'open-uri'
-require 'json'
 
 class GamesController < ApplicationController
+  VOWELS = %w(A E I O U)
+
   def new
-    @letters = generate_grid(10).join(' ')
+    @letters = Array.new(5) { VOWELS.sample }
+    @letters += Array.new(5) { (('A'..'Z').to_a - VOWELS).sample }
+    @letters.shuffle!
   end
 
   def score
-    word = params[:word]
-    if @letters.nil?
-      @message = "#{word} and #{@letters}"
-    elsif include?(word.upcase)
-      if english_word?(word)
-        @message = "Congratulations! #{word} is a valid English word!"
-      else
-        @message = "Sorry but #{word} does not seem to be a valid English word"
-      end
-    else
-      @message = "Sorry but #{word} can not be built out #{@letters}"
-    end
+    @letters = params[:letters].split
+    @word = (params[:word] || '').upcase
+    @included = include?(@word, @letters)
+    @english_word = english_word?(@word)
   end
 
-  def generate_grid(grid_size)
-    Array.new(grid_size) { ('A'..'Z').to_a.sample }
-  end
+  private
 
-  def include?(guess, letters)
-    guess.chars.all? { |letter| guess.count(letter) <= letters.count(letter) }
+  def include?(word, letters)
+    word.chars.all? { |letter| word.count(letter) <= letters.count(letter) }
   end
 
   def english_word?(word)

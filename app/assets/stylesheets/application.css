@@ -13,3 +13,30 @@
  *= require_tree .
  *= require_self
  */
+body {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 300;
+  padding: 0 24px;
+}
+h1 {
+  font-weight: 400;
+}
+
+.letters {
+  padding-left: 0;
+  font-size: 25px;
+  list-style: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.letters li {
+  background-color: blueviolet;
+  color: azure;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  padding: 4px 12px;
+  display: inline;
+}
+
+.form-prefix {
+  margin-top: 2em;
+}
